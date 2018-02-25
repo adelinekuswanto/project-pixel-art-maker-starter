@@ -1,29 +1,24 @@
-// Select color input
-// Select size input
-$(function(){
-	
-	const height = $('#inputHeight').val();
-	const width = $('input#inputWidth').val();
-	const pixelCanvas = $('table');
-	const submitButton = $('input[type=submit]');
+// When size is submitted by the user, call makeGrid()
+$('#sizePicker').submit(function makeGrid() {
+  //Remove existing grid before adding new grid
+  $('#pixelCanvas tr').remove();
+  $('#pixelCanvas td').remove();
+  // Select size input
+  let row = $('input[name="height"]').val(),
+  col = $('input[name="width"]').val();
+  // Add new rows and columns to the grid
+	for (let i = 0; i < row; i++) {
+		$('#pixelCanvas').append('<tr></tr>');
+    for (let j = 0; j < col; j++) {
+      $('#pixelCanvas tr').last().append('<td></td>');
+    };
+	};
+  return false;
+});
 
-
-
-		// When size is submitted by the user, call makeGrid()
-	submitButton.click(function makeGrid() {
-		for (var i = 0; i <= height; i++) {
-			pixelCanvas.append('<tr class="pixel-row"></tr>');
-		};
-		for (var m=0; i <= width; m++) {
-			$('.pixel-row').each(function() {
-				$(this).append('<td>Apple</td>');
-			});
-		};
-	});
-
-
-
-
-
-
+// When color is picked by the user, call colorPick()
+$('#pixelCanvas').on('click', 'td', function colorPick() {
+  // Select color input
+  let colorPicker = $('input[type="color"]').val();
+  $(this).css('background-color', colorPicker);
 });

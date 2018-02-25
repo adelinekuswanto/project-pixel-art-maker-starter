@@ -29,10 +29,12 @@ table {
 
 tr {
     height: 20px;
+    border: 1px solid black;
 }
 
 td {
     width: 20px;
+    border: 1px solid black;
 }
 
 input[type=number] {
