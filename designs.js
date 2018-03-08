@@ -1,24 +1,40 @@
-// When size is submitted by the user, call makeGrid()
-$('#sizePicker').submit(function makeGrid() {
-  //Remove existing grid before adding new grid
-  $('#pixelCanvas tr').remove();
-  $('#pixelCanvas td').remove();
-  // Select size input
-  let row = $('input[name="height"]').val(),
-  col = $('input[name="width"]').val();
-  // Add new rows and columns to the grid
-	for (let n = 0; n < row; n++) {
-		$('#pixelCanvas').append('<tr></tr>');
-    for (let m = 0; m < col; m++) {
-      $('#pixelCanvas tr').last().append('<td></td>');
-    }
-	}
-  return false;
-})
+let sizePickerSubmit = document.querySelector('input[type=submit]');
+let pixelCanvas = document.querySelector('#pixelCanvas');
 
-// When color is picked by the user, call colorPick()
-$('#pixelCanvas').on('click', 'td', function colorPick() {
-  // Select color input
-  let colorPicker = $('input[type="color"]').val();
-  $(this).css('background-color', colorPicker);
+
+function makeGrid(){
+  let row = document.querySelector('input[name=height]').value;
+  let col = document.querySelector('input[name=width]').value;
+  for (let n = 0; n < row; n++) {
+    let addTr = document.createElement('tr');
+    pixelCanvas.appendChild(addTr);
+    for (let m = 0; m < col; m++) {
+      let addTd = document.createElement('td');
+      let tr = document.querySelector('#pixelCanvas').lastChild;
+      if (tr.nodeName === 'TR') {
+        tr.append(addTd);
+      }
+    }
+  }
+};
+
+function clearGrid() {
+  pixelCanvas.innerHTML="";
+};
+ 
+sizePickerSubmit.addEventListener('click', function(event) {
+  event.preventDefault();
+  clearGrid();
+  makeGrid();
+});
+
+let grid = document.querySelector('td');
+
+function addBackgroundColor() {
+  let color = document.querySelector('input[type=color]').value;
+  tr.style.backgroundColor = color;
+};
+
+grid.addEventListener('click', function() {
+  addBackgroundColor();
 })
