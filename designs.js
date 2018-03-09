@@ -1,6 +1,9 @@
 let sizePickerSubmit = document.querySelector('input[type=submit]');
 let pixelCanvas = document.querySelector('#pixelCanvas');
 
+function clearGrid() {
+  pixelCanvas.innerHTML="";
+};
 
 function makeGrid(){
   let row = document.querySelector('input[name=height]').value;
@@ -17,24 +20,16 @@ function makeGrid(){
     }
   }
 };
-
-function clearGrid() {
-  pixelCanvas.innerHTML="";
-};
  
-sizePickerSubmit.addEventListener('click', function(event) {
-  event.preventDefault();
+sizePickerSubmit.addEventListener('click', function(e) {
+  e.preventDefault();
   clearGrid();
   makeGrid();
 });
 
-let grid = document.querySelector('td');
-
-function addBackgroundColor() {
-  let color = document.querySelector('input[type=color]').value;
-  tr.style.backgroundColor = color;
-};
-
-grid.addEventListener('click', function() {
-  addBackgroundColor();
+pixelCanvas.addEventListener('click', function addBackgroundColor(e) {
+  if(e.target && e.target.nodeName == 'TD') {
+    let color = document.querySelector('input[type=color]').value;
+    e.target.style.backgroundColor = color;
+  }
 })
