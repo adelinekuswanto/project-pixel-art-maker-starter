@@ -3,7 +3,7 @@ let pixelCanvas = document.querySelector('#pixelCanvas');
 
 function clearGrid() {
   pixelCanvas.innerHTML="";
-};
+}
 
 function makeGrid(){
   let row = document.querySelector('input[name=height]').value;
@@ -19,13 +19,13 @@ function makeGrid(){
       }
     }
   }
-};
+}
  
 sizePickerSubmit.addEventListener('click', function(e) {
   e.preventDefault();
   clearGrid();
   makeGrid();
-});
+})
 
 pixelCanvas.addEventListener('click', function addBackgroundColor(e) {
   if(e.target && e.target.nodeName == 'TD') {
